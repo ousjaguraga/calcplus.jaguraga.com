@@ -8,6 +8,7 @@ const NiceButton = props => (
       onPress={props.onPress}
       onLongPress={props.onLongPress}
       disabled={props.disabled}
+      style={styles.container}
     >
       <Text style={styles.button}>{props.title}</Text>
     </TouchableOpacity>
@@ -21,17 +22,28 @@ NiceButton.propTypes = {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "blue",
-    borderColor: "white",
+    backgroundColor: "black",
+   borderColor: "white",
     borderWidth: 1,
     borderRadius: 12,
-    color: "white",
+    color: "#ED8600",
     fontSize: 23,
+    
     fontWeight: "bold",
     overflow: "hidden",
     padding: 12,
     textAlign: "center",
     width: 90
+  }, container: {
+    shadowColor: "#FFF",
+    shadowOffset: {
+        width: 0,
+        height: 5,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    
+    elevation: 12,
   }
 });
 export default NiceButton;

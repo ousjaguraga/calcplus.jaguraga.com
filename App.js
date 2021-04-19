@@ -11,10 +11,12 @@ import {
 import Header from "./components/header";
 import Form from "./components/Form";
 import Content from "./components/Content";
-import { Constants } from "expo";
 import NiceButton from "./components/nice-button";
 import calculate2Percent from "./calc-logic-two";
 import calculate3Percent from "./calc-logic-three";
+
+
+
 
 
 export default class App extends React.Component {
@@ -34,8 +36,12 @@ export default class App extends React.Component {
     const error = this.state.isTypeError && this.state.isLimitError;
   };
 
+
+
+
   render() {
     return (
+      
       <View style={styles.container}>
         <Header style={styles.header} />
         <Form
@@ -127,12 +133,12 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "cyan",
+    backgroundColor: "#ED8600",
     flexDirection: "column"
   },
   header: {
     flex: 0.5,
-    backgroundColor: "skyblue",
+    backgroundColor: "#ED8600",
     marginTop: 40,
     flexDirection: "row",
     justifyContent: "space-evenly"
