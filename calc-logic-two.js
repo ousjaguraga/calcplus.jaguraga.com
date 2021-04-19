@@ -1,3 +1,7 @@
+import { Alert } from "react-native";
+
+
+
 function calculate2Percent() {
   let total = 0;
   let profits = 0;
@@ -11,6 +15,10 @@ function calculate2Percent() {
         //Check to see if the user gave a number
         if (isNaN(n)) {
           isTypeError = true;
+          Alert.alert(
+            "Error",
+            `${n} is not a number`
+          )
           return;
         }
         if (Number(n) % 50 === 0) {

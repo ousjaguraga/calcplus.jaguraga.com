@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 90
   }, container: {
+    marginTop: 10,
     shadowColor: "#FFF",
     shadowOffset: {
         width: 0,

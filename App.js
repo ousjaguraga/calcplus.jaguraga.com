@@ -6,7 +6,8 @@ import {
   Text,
   View,
   TextInput,
-  Keyboard
+  Keyboard,
+  Alert
 } from "react-native";
 import Header from "./components/header";
 import Form from "./components/Form";
@@ -149,13 +150,23 @@ const styles = StyleSheet.create({
     width: "100%",
     minHeight: "30%",
     fontSize: 27,
-    color: "white"
+    color: "white",
+    shadowColor: "#fff",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 5.16,
+
+    elevation: 10,
+
   },
   balanceForm: {
     width:90,
     height: 50,
     padding: 12,
-    marginTop:3,
+    marginTop:10,
     backgroundColor: "black",
     fontSize: 25,
     color: "white"
