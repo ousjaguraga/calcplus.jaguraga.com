@@ -8,11 +8,11 @@ import {
   TextInput,
   Keyboard
 } from "react-native";
-import Header from "./Components/header";
-import Form from "./Components/Form";
-import Content from "./Components/Content";
+import Header from "./components/header";
+import Form from "./components/Form";
+import Content from "./components/Content";
 import { Constants } from "expo";
-import NiceButton from "./Components/NiceButton";
+import NiceButton from "./components/nice-button";
 import calculate2Percent from "./calc-logic-two";
 import calculate3Percent from "./calc-logic-three";
 
