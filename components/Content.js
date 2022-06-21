@@ -5,7 +5,7 @@ import { green } from "ansi-colors";
 const Content = props => (
   <View style={props.style}>
     <View style={styles.line}/>
-    <Text style={{ backgroundColor: "#ED8600", fontSize: 20, color: "white" }}>
+    <Text style={{ backgroundColor: "#4c74c9", fontSize: 20, color: "white" }}>
       {props.info}
     </Text>
     <Text style={styles.text}>Total: <Text style={styles.currency}>{props.total}€</Text></Text>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 21
   },
   currency:{
-    color: "green",
+    color: "white",
     //backgroundColor: "black",
   },
   line: {

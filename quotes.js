@@ -22,6 +22,8 @@ const getRandomQuote = () => {
       "Against all odds!",
       "Dont't U dare quit",
       "Winners never quit",
+      "You've Got This!",
+      "Always do RIGHT !"
       
   
   

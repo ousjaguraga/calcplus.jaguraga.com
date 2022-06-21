@@ -17,9 +17,6 @@ import calculate2Percent from "./calc-logic-two";
 import calculate3Percent from "./calc-logic-three";
 
 
-
-
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -134,12 +131,13 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ED8600",
+    backgroundColor: "#4c74c9",
     flexDirection: "column"
   },
   header: {
     flex: 0.5,
-    backgroundColor: "#ED8600",
+    //"#ED8600"
+    backgroundColor: "#4c74c9",
     marginTop: 40,
     flexDirection: "row",
     justifyContent: "space-evenly"

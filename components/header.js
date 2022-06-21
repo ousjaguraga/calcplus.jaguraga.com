@@ -42,7 +42,7 @@ const getRandomQuote = () => {
 
 const Header = props => (
   <View style={props.style}>
-    <Text style={{ fontSize: 30, color: "black", fontFamily: "Avenir" }}>
+    <Text style={{ fontSize: 30, color: "white", fontFamily: "Avenir" }}>
       {getRandomQuote()}
     </Text>
   </View>
