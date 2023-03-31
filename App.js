@@ -175,6 +175,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly"
   },
   content: {
-    flex: 4
+    flex: 4,
+    padding: 20,
+    
   }
 });
