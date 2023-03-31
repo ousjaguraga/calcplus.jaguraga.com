@@ -8,7 +8,10 @@ import {
   TouchableOpacity,
   Image,
   Modal,
-  Share
+  Share,
+  TouchableWithoutFeedback,
+  Button,
+  Dimensions
 } from "react-native";
 import Header from "./components/header";
 import Form from "./components/Form";
@@ -17,8 +20,8 @@ import NiceButton from "./components/nice-button";
 import ViewShot from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import * as ImageManipulator from "expo-image-manipulator";
-import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
@@ -112,6 +115,9 @@ export default class App extends React.Component {
         title: 'Share Screenshot',
         url: base64Image,
       });
+      this.setState({showModal: false });
+
+      
     } catch (error) {
       console.log('Error sharing image:', error.message);
     }
@@ -126,6 +132,7 @@ export default class App extends React.Component {
           style={styles.container}
           ref={(ref) => (this.viewShotRef = ref)}
           options={{ format: "png", quality: 1, captureMode: "update" }}
+          
         >
           <Header style={styles.header} />
           <Form
@@ -235,35 +242,56 @@ export default class App extends React.Component {
           </View>
         </ViewShot>
         <Modal
-          animationType="slide"
-          transparent={true}
-          visible={this.state.showModal}
-          onRequestClose={this.closeModal}
+             animationType="slide"
+             transparent={true}
+             visible={this.state.showModal}
+             onRequestClose={() => {
+             this.setState({ showModal: false });
+  }}
+>
+  <TouchableWithoutFeedback
+    onPress={() => {
+      this.setState({ showModal: false });
+    }}
+  >
+    <View style={styles.modalBackground}>
+      <TouchableWithoutFeedback>
+        <LinearGradient
+          colors={['#4c74c9', '#a0b6f5']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.modalContent}
         >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Image source={{ uri: this.state.imageUri }} style={styles.modalImage} />
-              <TouchableOpacity
-                style={styles.shareButton}
-                onPress={this.shareImage}
-              >
-                <Text style={styles.shareButtonText}>Share Image</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.closeButton}
-                onPress={this.closeModal}
-              >
-                <Text style={styles.closeButtonText}>Close</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={styles.modalImageWrapper}>
+            {this.state.imageUri && (
+              <Image
+                source={{ uri: this.state.imageUri }}
+                style={styles.modalImage}
+              />
+            )}
           </View>
-        </Modal>
+          <Button title="Share" onPress={this.shareImage} />
+          <Button
+            
+            title="Close"
+            onPress={() => {
+              this.setState({ showModal: false });
+            }}
+          />
+        </LinearGradient>
+      </TouchableWithoutFeedback>
+    </View>
+  </TouchableWithoutFeedback>
+</Modal>
+
+
 
       </View>
     );
   }
 }
 
+const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -321,7 +349,6 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -334,31 +361,55 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
-  modalImage: {
-    width: 200,
-    height: 300,
-  },
+ 
   shareButton: {
     backgroundColor: "#4c74c9",
     borderRadius: 20,
     padding: 10,
     marginTop: 20,
   },
-  shareButtonText: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-  closeButton: {
-    backgroundColor: "#f00",
-    borderRadius: 20,
-    padding: 10,
-    marginTop: 10,
+  modalImageWrapper: {
+    width: width * 0.7,
+    height: 400,
+    padding: 1, // Add some padding around the image
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 4,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
   },
-  closeButtonText: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
+  modalImage: {
+    flex: 1,
+    borderRadius: 10,
+    width: '100%',
+    height: '100%'
   },
+  modalContent: {
+    width: width * 0.8,
+    height: height * 0.6,
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  
   
 });
